@@ -1,3 +1,8 @@
+// put these near the top:
+const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
+const PROFILE = (params.get("owner") || "default").toLowerCase();
+const STORAGE_KEY = `foundation-checklist-v1:${PROFILE}`;
+
 // @ts-nocheck
 
 'use client';
@@ -5,7 +10,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 
 const uid = () => Math.random().toString(36).slice(2, 10);
-const STORAGE_KEY = "foundation-checklist-v1";
 
 const QUARTERS = [
   { key: "Q1", label: "Q1 (Due Jan 31)", due: "January 31" },
